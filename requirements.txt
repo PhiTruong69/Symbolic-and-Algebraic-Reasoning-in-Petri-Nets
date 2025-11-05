@@ -1,0 +1,6 @@
+numpy
+pandas
+dd
+pulp
+matplotlib
+xmltodict
