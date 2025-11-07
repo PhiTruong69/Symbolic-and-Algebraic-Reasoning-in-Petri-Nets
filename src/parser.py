@@ -1,11 +1,10 @@
 import xml.etree.ElementTree as ET
 from petri_net import PetriNet, Place, Transition, Arc
-# định nghĩa các class và hàm liên quan đến mạng Petri
-# bao gồm các thành phần như Places, Transitions, và Arcs
 
 
 
-def load_pnml(file_path):
+
+def load_pnml(file_path): # hàm để tải và phân tích cú pháp tệp PNML
     tree = ET.parse(file_path)
     root = tree.getroot()
 
@@ -41,7 +40,7 @@ def load_pnml(file_path):
 
 
 if __name__ == "__main__":
-    pnml_file = "data/modelhuhu.pnml"  # đường dẫn đến tệp PNML
+    pnml_file = "data/model0.pnml"  # đường dẫn đến tệp PNML
     petri_net = load_pnml(pnml_file)
     print(petri_net)
     print("Places:", petri_net.places)
