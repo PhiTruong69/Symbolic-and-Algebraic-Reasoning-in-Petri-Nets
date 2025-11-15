@@ -117,8 +117,9 @@ if __name__ == "__main__":
     
     # Test parser với các file mẫu
     test_files = [
-       # "../data/modelhuhu.pnml",
-        "data/test1_workflow.pnml"
+        "../data/test1_workflow.pnml",
+        "../data/test_6.pnml"
+
     ]
     
     for pnml_file in test_files:
