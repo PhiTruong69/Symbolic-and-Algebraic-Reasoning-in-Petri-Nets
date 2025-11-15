@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<pnml xmlns="http://www.pnml.org/version-2009/grammar/pnml">
+    <net id="ComposedModel" type="http://www.pnml.org/version-2009/grammar/ptnet">
+        <name>
+            <text>ComposedModel</text>
+        </name>
+        <page id="page0">
+            <place id="wait">
+                <graphics>
+                    <position x="120" y="120"/>
+                </graphics>
+                <name>
+                    <graphics>
+                        <offset x="0" y="0"/>
+                    </graphics>
+                    <text>wait</text>
+                </name>
+                <initialMarking>
+                    <text>1</text>
+                </initialMarking>
+            </place>
+            <place id="work">
+                <graphics>
+                    <position x="255" y="165"/>
+                </graphics>
+                <name>
+                    <graphics>
+                        <offset x="0" y="0"/>
+                    </graphics>
+                    <text>work</text>
+                </name>
+                <initialMarking>
+                    <text>0</text>
+                </initialMarking>
+            </place>
+            <place id="done">
+                <graphics>
+                    <position x="375" y="120"/>
+                </graphics>
+                <name>
+                    <graphics>
+                        <offset x="0" y="0"/>
+                    </graphics>
+                    <text>done</text>
+                </name>
+                <initialMarking>
+                    <text>0</text>
+                </initialMarking>
+            </place>
+            <place id="free">
+                <graphics>
+                    <position x="120" y="210"/>
+                </graphics>
+                <name>
+                    <graphics>
+                        <offset x="0" y="0"/>
+                    </graphics>
+                    <text>free</text>
+                </name>
+                <initialMarking>
+                    <text>1</text>
+                </initialMarking>
+            </place>
+            <place id="docu">
+                <graphics>
+                    <position x="375" y="210"/>
+                </graphics>
+                <name>
+                    <graphics>
+                        <offset x="0" y="0"/>
+                    </graphics>
+                    <text>docu</text>
+                </name>
+                <initialMarking>
+                    <text>0</text>
+                </initialMarking>
+            </place>
+            <transition distribution="constant" id="start" value="1.0">
+                <name>
+                    <graphics>
+                        <offset x="0" y="0"/>
+                    </graphics>
+                    <text>start</text>
+                </name>
+                <graphics>
+                    <position x="180" y="165"/>
+                </graphics>
+            </transition>
+            <transition distribution="constant" id="change" value="1.0">
+                <name>
+                    <graphics>
+                        <offset x="0" y="0"/>
+                    </graphics>
+                    <text>change</text>
+                </name>
+                <graphics>
+                    <position x="315" y="165"/>
+                </graphics>
+            </transition>
+            <transition distribution="constant" id="end" value="1.0">
+                <name>
+                    <graphics>
+                        <offset x="0" y="0"/>
+                    </graphics>
+                    <text>end</text>
+                </name>
+                <graphics>
+                    <position x="255" y="270"/>
+                </graphics>
+            </transition>
+            <arc id="wait_to_start" source="wait" target="start" type="normal"/>
+            <arc id="free_to_start" source="free" target="start" type="normal"/>
+            <arc id="start_to_work" source="start" target="work" type="normal"/>
+            <arc id="work_to_change" source="work" target="change" type="normal"/>
+            <arc id="change_to_done" source="change" target="done" type="normal"/>
+            <arc id="change_to_docu" source="change" target="docu" type="normal"/>
+            <arc id="docu_to_end" source="docu" target="end" type="normal"/>
+            <arc id="end_to_free" source="end" target="free" type="normal"/>
+        </page>
+    </net>
+</pnml>
