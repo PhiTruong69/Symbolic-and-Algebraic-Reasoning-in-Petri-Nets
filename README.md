@@ -416,6 +416,6 @@ State 4: {done, free}     = (0,1,1,0,0)  # After "end"
 {wait,free} --[start]--> {work} --[change]--> {docu,done} --[end]--> {done,free}
 ```
 
---
+---
 
 ## Giải thích Task 5 – Optimization over reachable markings (ILP + BDD)
