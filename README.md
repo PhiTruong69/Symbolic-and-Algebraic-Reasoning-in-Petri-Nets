@@ -43,6 +43,17 @@ conda install -c conda-forge pyeda
      ```bash
      python task3.py
      ```
+   * **Task 4:**
+   
+     ```bash
+     python --.py
+     ```
+   * **Task 5:**
+   
+     ```bash
+     python optimization.py
+     ```
+     
 
 ---
 
@@ -404,3 +415,7 @@ State 4: {done, free}     = (0,1,1,0,0)  # After "end"
 ```
 {wait,free} --[start]--> {work} --[change]--> {docu,done} --[end]--> {done,free}
 ```
+
+--
+
+## Giải thích Task 5 – Optimization over reachable markings (ILP + BDD)
