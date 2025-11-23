@@ -467,13 +467,13 @@ if __name__ == "__main__":
     import os
     
     test_cases = [
-        ("../data/simple.pnml", 2),
-        ("../data/test1_workflow.pnml", 4),
-        ("../data/test2_selfloop.pnml", 3),
-        ("../data/test3_deadlock.pnml", 5),
-        ("../data/test4_cycle.pnml", 3),
-        ("../data/test5_choice.pnml", 3),
-        ("../data/test_6.pnml", 5),
+        ("data/simple.pnml", 2),
+        ("data/test1_workflow.pnml", 4),
+        ("data/test2_selfloop.pnml", 3),
+        ("data/test3.pnml", 5),
+        ("data/test4_cycle.pnml", 3),
+        ("data/test5_choice.pnml", 3),
+        ("data/test_6.pnml", 5),
     ]
     
     print("\n" + "=" * 70)

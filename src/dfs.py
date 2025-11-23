@@ -4,7 +4,7 @@ from collections import deque
 
 
 if __name__ == "__main__":
-    pnml_file = "../data/test1_workflow.pnml"  # đường dẫn đến tệp PNML
+    pnml_file = "data/test1_workflow.pnml"  # đường dẫn đến tệp PNML
     petri_net = load_pnml(pnml_file) # tải mạng Petri từ tệp PNML
     reachable_markings = petri_net.compute_reachable_markings()
     print(f"Total reachable markings: {len(reachable_markings)}")
