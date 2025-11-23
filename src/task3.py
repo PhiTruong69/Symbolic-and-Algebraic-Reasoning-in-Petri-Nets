@@ -265,9 +265,9 @@ def validate_results(net, explicit_states_frozenset, bdd_count, Reach_bdd, max_s
     print(f"  BDD (Task 3):            {bdd_count}")
     
     if explicit_count == bdd_count:
-        print(f"  ✅ KHỚP!")
+        print(f"  KHỚP!")
     else:
-        print(f"  ❌ KHÔNG KHỚP! Chênh lệch: {abs(explicit_count - bdd_count)}")
+        print(f"  KHÔNG KHỚP! Chênh lệch: {abs(explicit_count - bdd_count)}")
         return False
     
     # 2. Chuyển BDD thành explicit set để so sánh chi tiết
@@ -286,9 +286,9 @@ def validate_results(net, explicit_states_frozenset, bdd_count, Reach_bdd, max_s
     only_bdd = bdd_states - explicit_states_frozenset
     
     if not only_explicit and not only_bdd:
-        print(f"  ✅ TẤT CẢ {explicit_count} TRẠNG THÁI KHỚP HOÀN TOÀN!")
+        print(f"  TẤT CẢ {explicit_count} TRẠNG THÁI KHỚP HOÀN TOÀN!")
     else:
-        print(f"  ❌ CÓ SAI KHÁC:")
+        print(f"  CÓ SAI KHÁC:")
         if only_explicit:
             print(f"     - Chỉ có trong Explicit: {len(only_explicit)} trạng thái")
             for m in list(only_explicit)[:3]:
@@ -330,7 +330,7 @@ def run_test_with_dfs_results(pnml_file, expected_count=None, verbose=False):
     try:
         net = load_pnml(pnml_file)
     except Exception as e:
-        print(f"❌ Lỗi load file: {e}")
+        print(f"Lỗi load file: {e}")
         import traceback
         traceback.print_exc()
         return False
@@ -369,7 +369,7 @@ def run_test_with_dfs_results(pnml_file, expected_count=None, verbose=False):
             explicit_states_frozenset.add(marking_fs)
         
     except Exception as e:
-        print(f"❌ Lỗi trong DFS: {e}")
+        print(f"Lỗi trong DFS: {e}")
         import traceback
         traceback.print_exc()
         tracemalloc.stop()
@@ -388,7 +388,7 @@ def run_test_with_dfs_results(pnml_file, expected_count=None, verbose=False):
 
     print(f"  Thời gian: {time_2:.3f} ms")
     print(f"  Bộ nhớ peak: {peak_2 / 1024:.2f} KB")
-    print(f"  ✅ Sử dụng DFS từ petri_net.compute_reachable_markings()")
+    print(f"  Sử dụng DFS từ petri_net.compute_reachable_markings()")
     
     # Task 3: Symbolic
     print("\n" + "-" * 70)
@@ -401,7 +401,7 @@ def run_test_with_dfs_results(pnml_file, expected_count=None, verbose=False):
     try:
         Reach_bdd, count, iterations, stats = symbolic_reachability(net, verbose=verbose)
     except Exception as e:
-        print(f"❌ Lỗi trong symbolic reachability: {e}")
+        print(f"Lỗi trong symbolic reachability: {e}")
         import traceback
         traceback.print_exc()
         tracemalloc.stop()
@@ -425,7 +425,7 @@ def run_test_with_dfs_results(pnml_file, expected_count=None, verbose=False):
     try:
         validation_passed = validate_results(net, explicit_states_frozenset, count, Reach_bdd, max_show=10)
     except Exception as e:
-        print(f"\n❌ Lỗi trong validation: {e}")
+        print(f"\nLỗi trong validation: {e}")
         import traceback
         traceback.print_exc()
         validation_passed = False
@@ -438,16 +438,16 @@ def run_test_with_dfs_results(pnml_file, expected_count=None, verbose=False):
     success = True
     
     if not validation_passed:
-        print(f"  ❌ VALIDATION FAILED")
+        print(f"  VALIDATION FAILED")
         success = False
     elif expected_count and count != expected_count:
-        print(f"  ❌ Số trạng thái không đúng: Expected={expected_count}, Got={count}")
+        print(f"  Số trạng thái không đúng: Expected={expected_count}, Got={count}")
         success = False
     else:
         msg = f"Cả DFS và BDD đều tìm thấy {count} trạng thái"
         if expected_count:
-            msg += " ✅ (đúng với expected)"
-        print(f"  ✅ PASS: {msg}")
+            msg += " (đúng với expected)"
+        print(f"  PASS: {msg}")
     
     # Performance comparison
     speedup = time_2 / time_3 if time_3 > 0 else 0
@@ -473,7 +473,7 @@ if __name__ == "__main__":
         ("data/test3.pnml", 5),
         ("data/test4_cycle.pnml", 3),
         ("data/test5_choice.pnml", 3),
-        ("data/test_6.pnml", 5),
+        ("data/test6.pnml", 5),
     ]
     
     print("\n" + "=" * 70)
@@ -485,7 +485,7 @@ if __name__ == "__main__":
     
     for idx, (pnml_file, expected) in enumerate(test_cases):
         if not os.path.exists(pnml_file):
-            print(f"\n⚠️  File không tồn tại: {pnml_file}")
+            print(f"\n  File không tồn tại: {pnml_file}")
             print("    Chạy pnml_generator.py trước để tạo test cases!")
             results.append((pnml_file, False, expected))
             continue
@@ -507,14 +507,14 @@ if __name__ == "__main__":
         print(f"Success rate: {passed/total*100:.1f}%\n")
         
         for pnml_file, success, expected in results:
-            status = "✅ PASS" if success else "❌ FAIL"
+            status = "PASS" if success else " FAIL"
             filename = os.path.basename(pnml_file)
             print(f"  {status}: {filename:30s} (expected: {expected} states)")
         
         if passed == total:
-            print(f"\n🎉 ALL TESTS PASSED! 🎉")
-            print(f"\n💡 Sử dụng DFS từ petri_net.compute_reachable_markings()")
+            print(f"\n ALL TESTS PASSED! ")
+            print(f"\n Sử dụng DFS từ petri_net.compute_reachable_markings()")
         else:
-            print(f"\n⚠️  {total - passed} test(s) failed.")
+            print(f"\n  {total - passed} test(s) failed.")
 
 

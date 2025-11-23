@@ -104,7 +104,7 @@ def load_pnml(file_path):
         if source_obj and target_obj:
             arcs.append(Arc(aid, source_obj, target_obj))
         else:
-            print(f"⚠️  Warning: Arc {aid} references non-existent source or target")
+            print(f" Warning: Arc {aid} references non-existent source or target")
     
     # Build initial marking dictionary
     initial_marking = {pid: p.tokens for pid, p in places.items()}
@@ -117,13 +117,13 @@ if __name__ == "__main__":
     
     # Test parser với các file mẫu
     test_files = [
-        "data/test.pnml"
+        "data/test1_workflow.pnml"
 
     ]
     
     for pnml_file in test_files:
         if not os.path.exists(pnml_file):
-            print(f"⚠️  File không tồn tại: {pnml_file}")
+            print(f"  File không tồn tại: {pnml_file}")
             continue
         
         print(f"\n{'='*60}")
@@ -132,7 +132,7 @@ if __name__ == "__main__":
         
         try:
             petri_net = load_pnml(pnml_file)
-            print(f"✅ Load thành công!")
+            print(f"Load thành công!")
             print(f"   {petri_net}")
             print(f"\nPlaces ({len(petri_net.places)}):")
             for p in petri_net.places:
@@ -148,6 +148,6 @@ if __name__ == "__main__":
                 if tokens > 0:
                     print(f"   - {pid}: {tokens}")
         except Exception as e:
-            print(f"❌ Lỗi: {e}")
+            print(f"Lỗi: {e}")
             import traceback
             traceback.print_exc()
