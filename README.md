@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-
 # Hướng dẫn cài đặt và chạy chương trình
 
 ## 1. Cài môi trường
@@ -568,6 +566,7 @@ Hàm `run_task4()` trả về:
 ------------------------------------------------------------------------
 # TASK 5 -- Optimization over reachable markings using BDD + ILP
 (End of README content)
+
 =======
 
 # Hướng dẫn cài đặt và chạy chương trình
