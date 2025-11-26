@@ -15,12 +15,12 @@
 │     └── README.txt
 │
 │── src/
-│     ├── dfs.py
-│     ├── optimization.py
-│     ├── parser_simple.py
-│     ├── petri_net.py
-│     ├── task3.py
-│     ├── task4.py
+│     ├── dfs.py              #(task 2)
+│     ├── optimization.py     #(task 5)
+│     ├── parser_simple.py    #(task 1)
+│     ├── petri_net.py        #(mô phỏng 1 petri net)
+│     ├── task3.py            #(task 3)
+│     ├── task4.py            #(task 4)
 │     └── __pycache__/
 │
 │── requirements.txt
@@ -683,6 +683,7 @@ Hàm `run_task4()` trả về:
 ------------------------------------------------------------------------
 # TASK 5 -- Optimization over reachable markings using BDD + ILP
 (End of README content)
+
 
 
 
