@@ -1,21 +1,9 @@
 # Hướng dẫn cài đặt và chạy chương trình
-
-## 1. Cài môi trường
-
-Sử dụng **Anaconda Prompt**, chạy lần lượt các lệnh sau:
-
-```bash
-conda create -n mhh_env python=3.11
-conda activate mhh_env
-conda install -c conda-forge pyeda
-```
 ---
 
-## 2. Chạy code
+## Chạy code
 
-1. Mở **Anaconda Prompt**
-
-4. Chạy các task:
+ Chạy các task:
 
    * **Task 1:**
 
@@ -566,4 +554,5 @@ Hàm `run_task4()` trả về:
 ------------------------------------------------------------------------
 # TASK 5 -- Optimization over reachable markings using BDD + ILP
 (End of README content)
+
 
