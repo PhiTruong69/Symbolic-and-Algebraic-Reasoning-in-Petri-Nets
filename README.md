@@ -682,7 +682,91 @@ Hàm `run_task4()` trả về:
 
 ------------------------------------------------------------------------
 # TASK 5 -- Optimization over reachable markings using BDD + ILP
+
+<p>Mục tiêu của Task 5 là giải bài toán tối ưu trên tập reachable markings của mạng Petri, với mô hình:</p>
+
+<pre><code>maximize  cᵀ M   với   M ∈ Reach(M₀)</code></pre>
+
+<p>Trong đó:</p>
+
+<ul>
+    <li><strong>Reach(M₀)</strong>: tập tất cả các marking reachable từ marking ban đầu.</li>
+    <li><strong>c</strong>: vector trọng số (do người dùng chọn hoặc random).</li>
+    <li><strong>M</strong>: marking ứng viên.</li>
+</ul>
+
+<p>Task này kết hợp 2 kỹ thuật chính:</p>
+
+<ul>
+    <li><strong>BDD (Binary Decision Diagram)</strong>: dùng lại từ Task 3 để biểu diễn Reach(M₀) một cách symbolically.</li>
+    <li><strong>ILP (Integer Linear Programming)</strong>: dùng <code>PuLP</code> để chọn marking có giá trị cᵀM lớn nhất.</li>
+</ul>
+</div>
+
+
+<div class="card">
+<h2 Pipeline thực hiện Task 5</h2>
+
+<h3> Load PNML &amp; Petri Net</h3>
+<p>Dùng lại parser từ Task 1 và cấu trúc PetriNet từ Task 2.</p>
+
+<pre><code>net = load_pnml(pnml_file)
+place_list = get_place_list(net)
+</code></pre>
+
+<h3> Symbolic Reachability (BDD – Task 3)</h3>
+<p>Dùng hàm:</p>
+
+<pre><code>Reach_bdd, count, iterations, stats = symbolic_reachability(net)</code></pre>
+
+<p>Kết quả là BDD biểu diễn tất cả reachable markings.</p>
+
+<h3> Chuyển BDD → danh sách trạng thái explicit</h3>
+
+<pre><code>states = bdd_to_states(Reach_bdd, place_list)</code></pre>
+
+<p>Mỗi marking dạng:</p>
+
+<pre><code>frozenset({'p1', 'p3'})</code></pre>
+
+<h3> Sinh vector trọng số c</h3>
+
+<p>Nếu người dùng không cung cấp, hệ thống tự tạo random:</p>
+
+<pre><code>weight_dict = generate_weights_from_places(place_list)</code></pre>
+
+<h3> ILP Optimization (maximize cᵀM)</h3>
+
+<p>Formulation:</p>
+
+<ul>
+    <li>Biến chọn marking: <code>z_i ∈ {0,1}</code></li>
+    <li>Ràng buộc: chọn đúng 1 marking
+        <pre><code>Σ z_i = 1</code></pre>
+    </li>
+    <li>Hàm mục tiêu:
+        <pre><code>maximize Σ (cᵀM_i) * z_i</code></pre>
+    </li>
+</ul>
+
+<p>Solver: <strong>PuLP CBC</strong></p>
+
+<pre><code>prob.solve(PULP_CBC_CMD(msg=False))
+</code></pre>
+
+<h3>Xuất marking tối ưu</h3>
+
+<p>Kết quả gồm:</p>
+
+<ul>
+    <li>Marking tối ưu</li>
+    <li>Giá trị tối ưu cᵀM*</li>
+    <li>Thời gian BDD + ILP</li>
+    <li>Peak memory</li>
+</ul>
+
 (End of README content)
+
 
 
 
