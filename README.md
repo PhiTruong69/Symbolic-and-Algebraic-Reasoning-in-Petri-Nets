@@ -1,3 +1,32 @@
+
+# Kiến trúc chương trình
+
+<pre>
+<code>/
+│── data/
+│     ├── simple.pnml
+│     ├── test_deadlock.pnml
+│     ├── test1_workflow.pnml
+│     ├── test2_selffloop.pnml
+│     ├── test3.pnml
+│     ├── test4_cycle.pnml
+│     ├── test5_choice.pnml
+│     ├── test6.pnml
+│     └── README.txt
+│
+│── src/
+│     ├── dfs.py
+│     ├── optimization.py
+│     ├── parser_simple.py
+│     ├── petri_net.py
+│     ├── task3.py
+│     ├── task4.py
+│     └── __pycache__/
+│
+│── requirements.txt
+└── README.md
+</code>
+</pre>
 # Hướng dẫn cài đặt và chạy chương trình
 ---
 
@@ -44,7 +73,107 @@
 
 ---
 # TASK 1 -- ĐỌC FILE PNML 
-# TASK 2 -- TÍNH TOÁN CÁC MARKINGSMARKINGS CÓ THỂ CÓ
+## Đọc tệp PNML chuẩn (theo format của TAPAAL)
+
+<p>Hệ thống có thể đọc các tệp <strong>PNML chuẩn</strong> (TAPAAL) và trích xuất thông tin:</p>
+
+<ul>
+  <li><strong>Places</strong>: id, name, initial tokens</li>
+  <li><strong>Transitions</strong>: id, name</li>
+  <li><strong>Arcs</strong>: id, source, target</li>
+  <li>Xử lý <strong>XML namespaces</strong> (đặc biệt cho file PNML từ TAPAAL)</li>
+</ul>
+
+<p>Tạo các đối tượng Python:</p>
+<ul>
+  <li><code>Place</code></li>
+  <li><code>Transition</code></li>
+  <li><code>Arc</code></li>
+  <li><code>PetriNet</code></li>
+</ul>
+
+<p>Có kiểm tra tính nhất quán ví dụ như arc trỏ đến node không tồn tại.</p>
+
+<h3>File chính: <code>parser_simple.py</code></h3>
+
+<ul>
+  <li>Tự động thu thập namespaces bằng <code>iterparse()</code></li>
+  <li>Hàm tìm element nhiều chế độ: không namespace / có namespace</li>
+  <li>Parse đầy đủ tên Place/Transition và token khởi tạo</li>
+  <li>Chuyển dữ liệu sang cấu trúc Python: <code>PetriNet(...)</code></li>
+</ul>
+
+<h3> Ví dụ sử dụng:</h3>
+
+<pre>
+<code>from parser_simple import load_pnml
+
+petri_net = load_pnml("data/test1_workflow.pnml")
+print(petri_net)
+</code>
+</pre>
+
+<hr/>
+
+# TASK 2 -- TÍNH TOÁN CÁC MARKINGS CÓ THỂ CÓ
+
+<p>Dựa trên Petri Net đã parse được ở Task 1 để tính tất cả reachable markings:</p>
+
+<ul>
+  <li>Kiểm tra transition enabled</li>
+  <li>Firing để sinh marking mới</li>
+  <li>Dùng thuật toán DFS</li>
+  <li>Dùng visited để tránh lặp vô hạn</li>
+</ul>
+
+<h3>File chính: <code>petri_net.py</code></h3>
+
+<h3>Các chức năng đã triển khai</h3>
+
+<h4>1. <code>buildmap()</code></h4>
+<ul>
+  <li>Tự động xây dựng bảng input (place → transition)</li>
+  <li>Xây dựng bảng output (transition → place)</li>
+</ul>
+
+<h4>2. <code>is_enabled(transition, marking)</code></h4>
+<ul>
+  <li>Kiểm tra transition có thể bắn</li>
+  <li>Giả định mọi arc có trọng số = 1 (1-safe net)</li>
+</ul>
+
+<h4>3. <code>fire_transition(transition, marking)</code></h4>
+<ul>
+  <li>Sinh marking mới sau firing</li>
+</ul>
+
+<h4>4. <code>compute_reachable_markings()</code></h4>
+<ul>
+  <li>Triển khai DFS</li>
+  <li>Marking được chuyển sang <code>tuple</code> để hash</li>
+  <li>Duyệt toàn bộ không gian trạng thái</li>
+</ul>
+
+<h3>Ví dụ chạy:</h3>
+
+```python
+#dfs.py
+from petri_net import PetriNet, Transition, Place, Arc
+from parser_simple import load_pnml # sửa thành parser_simple
+from collections import deque
+
+
+if __name__ == "__main__":
+    pnml_file = "data/test1_workflow.pnml"  # đường dẫn đến tệp PNML
+    petri_net = load_pnml(pnml_file) # tải mạng Petri từ tệp PNML
+    reachable_markings = petri_net.compute_reachable_markings()
+    print(f"Total reachable markings: {len(reachable_markings)}")
+    for i, marking in enumerate(reachable_markings):
+        print(f"Marking {i}: {marking}")
+```
+
+<hr/>
+
 # TASK 3 -- SYMBOLIC REACHABILITY (BDD)
 ## Giải thích Task TEST 1 - WORKFLOW
 
@@ -554,5 +683,6 @@ Hàm `run_task4()` trả về:
 ------------------------------------------------------------------------
 # TASK 5 -- Optimization over reachable markings using BDD + ILP
 (End of README content)
+
 
 
