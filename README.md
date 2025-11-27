@@ -1,4 +1,12 @@
+## Repo hiện thực toàn bộ bài tập lớn môn Mathematical Modeling, tập trung vào phân tích hình thức Petri net.  
+### Dự án bao gồm:
+- Đọc và phân tích PNML  
+- Tính reachable markings bằng DFS  
+- Reachability symbolic bằng BDD  
+- Phát hiện deadlock bằng ILP kết hợp BDD  
+- Tối ưu hóa tuyến tính trên reachable set
 
+### Hệ thống được xây dựng bằng Python, sử dụng PyEDA (BDD) và PuLP (ILP), kèm theo các ví dụ và kết quả thực nghiệm.
 # Kiến trúc chương trình
 
 <pre>
@@ -813,6 +821,7 @@ place_list = get_place_list(net)
 </ul>
 
 (End of README content)
+
 
 
 
