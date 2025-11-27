@@ -7,7 +7,7 @@
 │     ├── simple.pnml
 │     ├── test_deadlock.pnml
 │     ├── test1_workflow.pnml
-│     ├── test2_selffloop.pnml
+│     ├── test2_selfloop.pnml
 │     ├── test3.pnml
 │     ├── test4_cycle.pnml
 │     ├── test5_choice.pnml
@@ -36,7 +36,7 @@
     </td>
     <td align="center">
       <img src="https://github.com/user-attachments/assets/a873fd56-abcf-40b1-85bb-f295479f8354" width="300"><br>
-      Hình 2: test2_selffloop.pnml
+      Hình 2: test2_selfloop.pnml
     </td>
      <td align="center">
       <img src="https://github.com/user-attachments/assets/742712a1-a947-45b1-8125-42dc7475bd5d" width="300"><br>
@@ -813,6 +813,7 @@ place_list = get_place_list(net)
 </ul>
 
 (End of README content)
+
 
 
 
