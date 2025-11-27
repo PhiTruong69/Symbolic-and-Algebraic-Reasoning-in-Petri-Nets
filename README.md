@@ -27,6 +27,53 @@
 └── README.md
 </code>
 </pre>
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/3d5c080d-f4b1-4c4c-af25-40cff79c1457" width="300"><br>
+      Hình 1: test1_workflow.pnml
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/a873fd56-abcf-40b1-85bb-f295479f8354" width="300"><br>
+      Hình 2: test2_selffloop.pnml
+    </td>
+     <td align="center">
+      <img src="https://github.com/user-attachments/assets/742712a1-a947-45b1-8125-42dc7475bd5d" width="300"><br>
+      Hình 3: test3.pnml
+    </td>
+    </td>
+     <td align="center">
+      <img src="https://github.com/user-attachments/assets/f448d89b-0d37-47c5-9102-36b6894119ad" width="300"><br>
+      Hình 4: test4_cycle.pnml
+    </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/e1affc35-c7d5-4851-b1ae-a51d9cf5e886" width="300"><br>
+      Hình 5: test5_choice.pnml
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/70b6cacb-440a-4275-a4c1-440f3417db48" width="300"><br>
+      Hình 6: test6.pnml
+    </td>
+     <td align="center">
+      <img src="https://github.com/user-attachments/assets/88efbf30-7a17-407d-a1e9-b1fff1016894" width="300"><br>
+      Hình 7: test_deadlock.pnml
+    </td>
+  </tr>
+</table>
+
+
+
+
+
+
+
+
 # Hướng dẫn cài đặt và chạy chương trình
 ---
 
@@ -766,6 +813,7 @@ place_list = get_place_list(net)
 </ul>
 
 (End of README content)
+
 
 
 
